@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    
+    <session-config>
+  <session-timeout>20</session-timeout>
+        </session-config>
+ 
+ 
+ <servlet>
+    <servlet-name>UploadVideo</servlet-name>
+    <servlet-class>servlet.Uploadvideo</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>UploadVideo</servlet-name>
+        <url-pattern>/UploadVideo</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
+ 
+ <servlet>
+    <servlet-name>UploadMusic</servlet-name>
+    <servlet-class>servlet.Uploadmusic</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>UploadMusic</servlet-name>
+        <url-pattern>/UploadMusic</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
+ 
+ <servlet>
+    <servlet-name>UploadPhoto</servlet-name>
+    <servlet-class>servlet.Uploadphoto</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>UploadPhoto</servlet-name>
+        <url-pattern>/UploadPhoto</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
+ 
+ 
+  <servlet>
+    <servlet-name>UploadFile</servlet-name>
+    <servlet-class>servlet.Uploadfile</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>UploadFile</servlet-name>
+        <url-pattern>/UploadFile</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
+ 
+  
+   <servlet>
+    <servlet-name>PhotosrcoptionUpdate</servlet-name>
+    <servlet-class>servlet.Photosrcoptionupdate</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>PhotosrcoptionUpdate</servlet-name>
+        <url-pattern>/PhotosrcoptionUpdate</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+
+
+ <servlet>
+    <servlet-name>AddComment</servlet-name>
+    <servlet-class>servlet.Addcomment</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>AddComment</servlet-name>
+        <url-pattern>/AddComment</url-pattern>
+  </servlet-mapping>
+
+
+
+ <servlet>
+    <servlet-name>OptionUpdate</servlet-name>
+    <servlet-class>servlet.Optionupdate</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>OptionUpdate</servlet-name>
+        <url-pattern>/OptionUpdate</url-pattern>
+  </servlet-mapping>
+
+
+
+ <servlet>
+    <servlet-name>BlogSetting</servlet-name>
+    <servlet-class>servlet.Blogsetting</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>BlogSetting</servlet-name>
+        <url-pattern>/BlogSetting</url-pattern>
+  </servlet-mapping>
+   
+   
+   
+ <servlet>
+    <servlet-name>ResetPwd</servlet-name>
+    <servlet-class>servlet.Resetpwd</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>ResetPwd</servlet-name>
+        <url-pattern>/ResetPwd</url-pattern>
+  </servlet-mapping>  
+
+   
+   
+   
+ <servlet>
+    <servlet-name>ValidateName</servlet-name>
+    <servlet-class>servlet.Validatename</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>ValidateName</servlet-name>
+        <url-pattern>/ValidateName</url-pattern>
+  </servlet-mapping>  
+   
+   
+   
+     <servlet>
+    <servlet-name>UpdateFile</servlet-name>
+    <servlet-class>servlet.UpdateFile</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>UpdateFile</servlet-name>
+        <url-pattern>/UpdateFile</url-pattern>
+  </servlet-mapping>
+    
+   
+      <servlet>
+    <servlet-name>DeleteFile</servlet-name>
+    <servlet-class>servlet.Deletefile</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeleteFile</servlet-name>
+        <url-pattern>/DeleteFile</url-pattern>
+  </servlet-mapping>
+  
+  
+     <servlet>
+    <servlet-name>DeleteVideo</servlet-name>
+    <servlet-class>servlet.Deletevideo</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeleteVideo</servlet-name>
+        <url-pattern>/DeleteVideo</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+     <servlet>
+    <servlet-name>DeleteMusic</servlet-name>
+    <servlet-class>servlet.Deletemusic</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeleteMusic</servlet-name>
+        <url-pattern>/DeleteMusic</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+     <servlet>
+    <servlet-name>DeletePhoto</servlet-name>
+    <servlet-class>servlet.Deletephoto</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeletePhoto</servlet-name>
+        <url-pattern>/DeletePhoto</url-pattern>
+  </servlet-mapping>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+       <servlet>
+    <servlet-name>AddCate</servlet-name>
+    <servlet-class>servlet.Addcate</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>AddCate</servlet-name>
+        <url-pattern>/AddCate</url-pattern>
+  </servlet-mapping>
+   
+   
+     <servlet>
+    <servlet-name>DeleteCate</servlet-name>
+    <servlet-class>servlet.Deletecate</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeleteCate</servlet-name>
+        <url-pattern>/DeleteCate</url-pattern>
+  </servlet-mapping>
+   
+   
+    
+    
+       <servlet>
+    <servlet-name>UpdateCate</servlet-name>
+    <servlet-class>servlet.Updatecate</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>UpdateCate</servlet-name>
+        <url-pattern>/UpdateCate</url-pattern>
+  </servlet-mapping>
+    
+    
+   <servlet>
+    <servlet-name>AddMood</servlet-name>
+    <servlet-class>servlet.Addmood</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>AddMood</servlet-name>
+        <url-pattern>/AddMood</url-pattern>
+  </servlet-mapping>
+    
+    
+  <servlet>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>servlet.Logout</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
+  </servlet-mapping>
+      
+       
+  <servlet>
+    <servlet-name>LiuYan</servlet-name>
+    <servlet-class>servlet.Liuyan</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>LiuYan</servlet-name>
+        <url-pattern>/LiuYan</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>AddBlog</servlet-name>
+    <servlet-class>servlet.Addblog</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>AddBlog</servlet-name>
+        <url-pattern>/AddBlog</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>DeletBlog</servlet-name>
+    <servlet-class>servlet.Deletblog</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeletBlog</servlet-name>
+        <url-pattern>/DeletBlog</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>UpdateBlog</servlet-name>
+    <servlet-class>servlet.Updateblog</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>UpdateBlog</servlet-name>
+        <url-pattern>/UpdateBlog</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>

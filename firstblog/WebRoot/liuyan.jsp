@@ -6,6 +6,7 @@ pageEncoding="UTF-8"
 contentType="text/html; charset=UTF-8"
 
 %>
+<%@ page import="dal.liuyanreplydal"%> 
 <%@ page import="java.io.*"%>   
 <%@ page import="utils.option"%>     
  <%@ page import="utils.photosrcoption"%> 
@@ -168,11 +169,7 @@ function reset_form()
          }
          
        
-        if(form.message.value.length>5000) {
-                alert("请输入合适心情!");
-                form.message.focus();
-                return false;
-           }
+      
        
           if(form.authcode.value=='') {
                 alert("请输正确入验证码!");
@@ -308,6 +305,15 @@ while(rs.next()){
      <div class="sy">
      <img class="img" src="<%=rs.getString("lPicsrc")%>" >
       <p> <%=rs.getString("lContent")%> </p>
+      <% 
+      liuyanreplydal lyrpldal=new liuyanreplydal();
+      int lyid=rs.getInt("lId");
+      ResultSet rplrs=lyrpldal.searchallreplybycmid(lyid);
+      while(rplrs.next()){
+      %>
+<p>      回复：<%=rplrs.getString("lreply") %> 时间：  <%=rplrs.getString("lrDate") %></p>
+      <br>
+      <%} %>
       
       <div float="right" style="position: absolute;right: 10px;bottom: 10px;">留言人:<%=rs.getString("lUser")%></div>
     
@@ -441,11 +447,11 @@ $("#picsrc").attr("value", "images/"+faceid+".jpg");
  
    <%
 String msg="";
-msg=(String)session.getAttribute("ms");
+msg=(String)request.getAttribute("ms");
 if(msg==null){
 msg="";
 }else{
-session.removeAttribute("ms");
+request.removeAttribute("ms");
 }
 
 
@@ -457,7 +463,9 @@ session.removeAttribute("ms");
 window.onload=function(){
 if("<%=msg%>"!="")
 
-{alert("<%=msg%>");}
+{alert("<%=msg%>");
+self.location="liuyan.jsp";
+}
 
 }				 
 </script>  

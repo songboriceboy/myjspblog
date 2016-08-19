@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 
 
+
 import  java.util.regex.Matcher;
 import  java.util.regex.Pattern;
 
@@ -20,6 +21,8 @@ import java.io.IOException;
 
 
 
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -108,48 +111,49 @@ ms+="--Õº∆¨µÿ÷∑≤ª’˝»∑";
 
 notification noti=new notification("¡Ù—‘",Name,Message);
 
-notificationdal notidal=new notificationdal();
+//notificationdal notidal=new notificationdal();
 
 
-          if(notidal.insertnoti(noti))
-         {
+        
               liuyandal lydal=new liuyandal();
               liuyan ly=new liuyan(Name, Email, Message,Picsrc);
 
-               if(lydal.insertliuyan(ly))
+               if(lydal.insertliuyan(ly,noti))
                {
             	   ms="¡Ù—‘≥…π¶";
-            		session=req.getSession();
-            		 session.setAttribute("ms",ms);
-            		res.sendRedirect("liuyan.jsp");
+            	   
+            		//session=req.getSession();
+            		 //session.setAttribute("ms",ms);
+            		//res.sendRedirect("liuyan.jsp");
+            	   req.setAttribute("ms", ms);
+           		RequestDispatcher rd=req.getRequestDispatcher("liuyan.jsp");
+           		rd.forward(req,res);
+            	   
                }else{
             	   
             	   ms=" ¡Ù—‘ ß∞‹";
-            		session=req.getSession();
-            		 session.setAttribute("ms",ms);
-            		res.sendRedirect("liuyan.jsp");
+            	   req.setAttribute("ms", ms);
+              		RequestDispatcher rd=req.getRequestDispatcher("liuyan.jsp");
+              		rd.forward(req,res);
+            		//session=req.getSession();
+            		// session.setAttribute("ms",ms);
+            		///res.sendRedirect("liuyan.jsp");
                }
                
                
             	   
-         }else{
-        	 
-        	 ms="¡Ù—‘ ß∞‹";
-        		session=req.getSession();
-        		 session.setAttribute("ms",ms);
-        		res.sendRedirect("liuyan.jsp");
-        	 
-         }
-          
-          
+            
 
 }else
 {
 	
 	ms="—È÷§¬Î≤ª’˝»∑ ¡Ù—‘ ß∞‹";
-	session=req.getSession();
-	 session.setAttribute("ms",ms);
-	res.sendRedirect("liuyan.jsp");
+	 req.setAttribute("ms", ms);
+		RequestDispatcher rd=req.getRequestDispatcher("liuyan.jsp");
+		rd.forward(req,res);
+	//session=req.getSession();
+	 //.setAttribute("ms",ms);
+	//res.sendRedirect("liuyan.jsp");
 
 }
         

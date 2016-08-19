@@ -65,35 +65,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-
-   <% 
- 
- 
-gettime gt=new gettime();
-
- if (application.getAttribute("count") == null) { 
-        application.setAttribute("count", new Integer(0)); 
-    } 
-    Integer count = (Integer) application.getAttribute("count"); 
-    application 
-            .setAttribute("count", new Integer(count.intValue() + 1)); 
-    count = (Integer) application.getAttribute("count"); 
- 
- 
- Date current_date = new Date();  
-	//设置日期格式化样式为：yyyy-MM-dd  
-	SimpleDateFormat  SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");  
-	//格式化当前日期  
-	String ndate=SimpleDateFormat.format(current_date.getTime()); 
-	
- gt.updatetimes(count.intValue(),ndate);
- 
-
-   
-     %> 
-  
-  
-  
   
   
   
@@ -246,13 +217,12 @@ while(caters.next()){
 
  <%
 String msg="";
-msg=(String)session.getAttribute("ms");
+msg=(String)request.getAttribute("ms");
 if(msg==null){
 msg="";
 }else{
-session.removeAttribute("ms");
+request.removeAttribute("ms");
 }
-
 
 %>
 
@@ -264,6 +234,7 @@ if("<%=msg%>"!="")
 {
 
 alert("<%=msg%>");
+self.location="catelist.jsp";
 
 }
 }

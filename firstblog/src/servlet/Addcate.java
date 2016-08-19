@@ -1,7 +1,10 @@
 package servlet;
 
 import javax.servlet.http.HttpServlet;
+
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,26 +61,35 @@ category cate=new category(catename,0);
 
 
 if(!ctdal.hassamename(catename)){
-          if(ctdal.insertcate(cate))
+        if(ctdal.insertcate(cate))
        {
         ms="成功添加类别";
-        session=req.getSession();
-   	    session.setAttribute("ms",ms);
-       res.sendRedirect("catelist.jsp");
+        //session=req.getSession();
+   	   // session.setAttribute("ms",ms);
+      // res.sendRedirect("catelist.jsp");
+        req.setAttribute("ms", ms);
+		RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+		rd.forward(req,res);
        }
        else
       {
        ms+="--类别添加失败";
-       session=req.getSession();
-  	  session.setAttribute("ms",ms);
-       res.sendRedirect("catelist.jsp");
+       //session=req.getSession();
+   	   // session.setAttribute("ms",ms);
+      // res.sendRedirect("catelist.jsp");
+        req.setAttribute("ms", ms);
+		RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+		rd.forward(req,res);
        }  
 }else{
 	
 	 ms+="--类别同名添加失败";
-	 session=req.getSession();
-	 session.setAttribute("ms",ms);
-     res.sendRedirect("catelist.jsp");
+	  //session=req.getSession();
+ 	   // session.setAttribute("ms",ms);
+    // res.sendRedirect("catelist.jsp");
+      req.setAttribute("ms", ms);
+		RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+		rd.forward(req,res);
 }
 
 
@@ -85,9 +97,12 @@ if(!ctdal.hassamename(catename)){
 	} else{
 		
 		ms+="--类别为空,添加失败";
-		session=req.getSession();
-		 session.setAttribute("ms",ms);
-		res.sendRedirect("catelist.jsp");
+		  //session=req.getSession();
+	   	   // session.setAttribute("ms",ms);
+	      // res.sendRedirect("catelist.jsp");
+	        req.setAttribute("ms", ms);
+			RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+			rd.forward(req,res);
 	       }
 
 

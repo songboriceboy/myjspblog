@@ -6,6 +6,77 @@
         </session-config>
  
  
+ 
+ <servlet>
+    <servlet-name>CommentReply</servlet-name>
+    <servlet-class>servlet.Commentreply</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>CommentReply</servlet-name>
+        <url-pattern>/CommentReply</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ <servlet>
+    <servlet-name>LiuyanReply</servlet-name>
+    <servlet-class>servlet.Liuyanreply</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>LiuyanReply</servlet-name>
+        <url-pattern>/LiuyanReply</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   <servlet>
+    <servlet-name>DeleteComment</servlet-name>
+    <servlet-class>servlet.Deletecomment</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeleteComment</servlet-name>
+        <url-pattern>/DeleteComment</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
+ 
+ 
+   <servlet>
+    <servlet-name>DeleteLiuyan</servlet-name>
+    <servlet-class>servlet.Deleteliuyan</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeleteLiuyan</servlet-name>
+        <url-pattern>/DeleteLiuyan</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <servlet>
+    <servlet-name>DeleteNoti</servlet-name>
+    <servlet-class>servlet.Deletenoti</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+        <servlet-name>DeleteNoti</servlet-name>
+        <url-pattern>/DeleteNoti</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
  <servlet>
     <servlet-name>UploadVideo</servlet-name>
     <servlet-class>servlet.Uploadvideo</servlet-class>

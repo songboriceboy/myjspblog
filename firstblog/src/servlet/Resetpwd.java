@@ -3,12 +3,16 @@ package servlet;
 import javax.servlet.http.HttpServlet;
 
 import java.io.IOException;
+
 import utils.regx;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import model.admin;
 import utils.MD5;
 import dal.admindal;
@@ -102,15 +106,26 @@ public class Resetpwd extends HttpServlet {
 		if(admdal.resetpwd(adm))
 		{
 			            ms="÷ÿ÷√≥…π¶ «Îµ«¬º";
-			            session=req.getSession();
-			            session.setAttribute("ms",ms);
-						res.sendRedirect("login.jsp"); 
+			            //session=req.getSession();
+			           // session.setAttribute("ms",ms);
+						//res.sendRedirect("login.jsp"); 
+						
+						 // session=req.getSession();
+			 			// session.setAttribute("ms",ms);
+						 // res.sendRedirect("video.jsp");
+						  req.setAttribute("ms", ms);
+			         		RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
+			         		rd.forward(req,res);
 		}
 		else{
 			    ms+="--÷ÿ÷√ ß∞‹";
-			    session=req.getSession();
-	            session.setAttribute("ms",ms);
-				res.sendRedirect("resetpwd.jsp"); 
+			  //  session=req.getSession();
+	           // session.setAttribute("ms",ms);
+				//res.sendRedirect("resetpwd.jsp"); 
+			 
+				  req.setAttribute("ms", ms);
+	         		RequestDispatcher rd=req.getRequestDispatcher("resetpwd.jsp");
+	         		rd.forward(req,res);
 			         
 		}
 		

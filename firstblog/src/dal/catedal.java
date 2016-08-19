@@ -74,7 +74,7 @@ public int sumcate(){
 	                   Connection con = DriverManager.getConnection(url,dbUser,dbPwd);
 	                   Statement stmt=con.createStatement();   
 	                   
-	                   String sumcateSql="sselect count(*) from  category";
+	                   String sumcateSql="select count(*) from  category";
 	                   ResultSet sumRs=stmt.executeQuery(sumcateSql); //执行查询 
 	                   
 	                   if(sumRs.next()){
@@ -113,19 +113,25 @@ public  boolean  deletcate(int id)
 		//使用驱动  获取连接   获取 Statement
    	    Class.forName(driverClass);
    	     con = DriverManager.getConnection(url,dbUser,dbPwd); 
-         Statement stmt=con.createStatement();  	 
-        
-        String sql="delete from category  where cId=\'"+id+"\'";
+         //Statement stmt=con.createStatement();  	 
+         PreparedStatement   pstmt=null;
+         
+         con.setAutoCommit(false); 
+         
+         String deletecatenamesql="UPDATE blog SET bCatename=null,bCateid=null where bCateid='"+id+"'";
+         pstmt=con.prepareStatement(deletecatenamesql);
+         pstmt.executeUpdate();
+         
+         
+        String deletecatesql="delete from category  where cId=\'"+id+"\'";
+        pstmt=con.prepareStatement(deletecatesql);
+        pstmt.executeUpdate();
 
-    
         
-        if(stmt.executeUpdate(sql)==1); //执行查询 
-        {f=true;}
-          
-  stmt.close();   
-
-  con.close();   
-   return f;
+        con.commit();
+        pstmt.close();
+        con.close();
+        return true;
 
 	 }catch(Exception ex)
             {   
@@ -156,19 +162,31 @@ public  boolean  updatecate(int id,String catename)
 			//使用驱动  获取连接   获取 Statement
        	    Class.forName(driverClass);
        	     con = DriverManager.getConnection(url,dbUser,dbPwd); 
-             Statement stmt=con.createStatement();  	 
+             Statement stmt=con.createStatement();  
+             
+             PreparedStatement   pstmt=null;
+             
+             con.setAutoCommit(false); 
+             
+           
             
-            String sql = "update category set cName=\""+catename+"\",cDate=null"+" where cId ='"+id+"'";
-
-        
+             
             
-            if(stmt.executeUpdate(sql)==1); //执行查询 
-            {f=true;}
-              
-      stmt.close();   
+            String updatecatesql = "update category set cName=\""+catename+"\",cDate=null"+" where cId ='"+id+"'";
 
-      con.close();   
-       return f;
+            pstmt=con.prepareStatement(updatecatesql);
+            pstmt.executeUpdate();
+            
+            String updatecatenamesql="UPDATE blog SET bCatename=\""+catename+"\" where bCateid='"+id+"'";
+     
+            pstmt=con.prepareStatement(updatecatenamesql);
+            pstmt.executeUpdate();
+            
+            con.commit();
+            pstmt.close();
+            con.close();
+            return true;
+            
   
 		 }catch(Exception ex)
                 {   

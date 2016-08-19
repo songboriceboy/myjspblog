@@ -2,8 +2,8 @@ package dal;
 
 
 import java.sql.*;
-import model.blog;
 
+import model.blog;
 import utils.dbconstant;
 
 
@@ -26,14 +26,23 @@ public  boolean insertblog(blog inblog) {
 	                 
                      boolean f=false;
                      int bCateid=0;
-
+ 
+                      
+	                
+                     Connection con=null;
+                     ResultSet cateRs=null;
+	            	  Statement   stmt=null; 
+	                  PreparedStatement   pstmt=null; 
 		 
 	              try{   
+	            	  
 	   
-	            	  //使用驱动  获取连接   获取 Statement
 	            	  Class.forName(driverClass);
 	            	  con = DriverManager.getConnection(url,dbUser,dbPwd); 
-	                  Statement stmt=con.createStatement();  	          
+	            	  
+	            	  stmt=con.createStatement();  
+	            	  //使用驱动  获取连接   获取 Statement
+	            	         
 	                  String inblogSql="";
 	                  
 	                  if(inblog.getCateName()==null)
@@ -41,39 +50,46 @@ public  boolean insertblog(blog inblog) {
 	                	  
 	                	  inblogSql= "insert into blog(`bAuthor`,`bTitle`,`bContent`,`bPicsrc`,`bDate`,`bClicks`,`bComments`,`bIstj`,`bUid`) values('admin',\'"+inblog.getTitle()+"\',\'"+inblog.getContent()+"\',\'"+inblog.getPicSrc()+"\',null,0,0,1,1)";
 	                	  
+	                	  
+	                	  if(stmt.executeUpdate(inblogSql)==1)  
+		                   {
+		                	  
+		                	  
+		                	  f=true;
+		                   }
+		                      stmt.close();   
+		                      con.close(); 
+		                    return f;
+	                	  
+	                	  
+	                	  
+	                	  
 	                  }else{
 	                  
 	                  // 根据博文类别名   查询博文类别id
                       String cateSql="select * from category where cName='"+inblog.getCateName()+"'";
-                      ResultSet cateRs=stmt.executeQuery(cateSql); 
+                      cateRs=stmt.executeQuery(cateSql); 
                       cateRs.next();
                       bCateid=cateRs.getInt("cId");
-	             
-	               	                    
+	                  cateRs.close();  
+	               	                  
+                      con.setAutoCommit(false); 
+                      
                       inblogSql= "insert into blog(`bAuthor`,`bCatename`,`bTitle`,`bContent`,`bPicsrc`,`bDate`,`bClicks`,`bComments`,`bIstj`,`bUid`,`bCateid`) values('admin',\'"+inblog.getCateName()+"\',\'"+inblog.getTitle()+"\',\'"+inblog.getContent()+"\',\'"+inblog.getPicSrc()+"\',null,0,0,1,1,"+bCateid+")";
-	                   
-	                  }                    
-	                     
-	                      
+	                  pstmt=con.prepareStatement(inblogSql);
+                      pstmt.executeUpdate();
+                      String addcateSql = "update category set cBlogsum=cBlogsum+1 where cId ='"+bCateid+"'";
+                      pstmt=con.prepareStatement(addcateSql);
+                      pstmt.executeUpdate();
+                      con.commit();
+                      pstmt.close();
+                      con.close();
+                      return true;
+                      
+                      
+	                  }                                          
 	                //执行插入
-	                  if(stmt.executeUpdate(inblogSql)==1)  
-	                   {
-	                	  
-	                	  /*
-	                	  if(bCateid!=0)
-	                	  {
-	                	  String updatecatesql="update category set cBlogsum=cBlogsum+1  where  cId='"+bCateid+"'";
-	                	  stmt.executeUpdate(updatecatesql);
-	                	  }
-	                	  */
-	                	  
-	                	  f=true;
-	                   }
-	                      stmt.close();   
-	                      con.close(); 
-	                    return f;
-	   
-	          
+	                  	          
 	       }catch(Exception ex)
 	                {   
 	   
@@ -81,6 +97,7 @@ public  boolean insertblog(blog inblog) {
 	                        return false;
 	   
 	                  }    
+	             
 
 }
 	 
@@ -121,8 +138,56 @@ public  ResultSet searchblog(){
 		 
 }
 	
-	 
-//判断博文是否分类
+
+
+
+
+//获取博文标题
+
+public String getblogtitle(int id){
+	
+	String blogtitle="";
+	 try{   
+		  
+       
+			//使用驱动  获取连接   获取 Statement
+			  Class.forName(driverClass);                 
+         Connection con = DriverManager.getConnection(url,dbUser,dbPwd);
+         Statement stmt=con.createStatement();   
+
+       
+       
+         String Sql="select bTitle from blog where bId=\'"+id+"\'";  
+         ResultSet blogRs=stmt.executeQuery(Sql); //执行查询 
+      
+         if(blogRs.next())
+         {
+      	   blogtitle=blogRs.getString(1);
+      	   stmt.close();   
+
+             con.close();            
+      	   
+         }
+         
+         return blogtitle;
+        
+          
+
+		 }catch(Exception ex)
+            {   
+
+                System.out.print("连接失败！！<br>"+ex.toString());   
+                return "";
+
+              } 
+		
+	
+	
+}
+
+
+
+//获取博文是否分类
 
 public int getblogcateid(int id){
 	
@@ -160,7 +225,7 @@ public int getblogcateid(int id){
                   return 0;
 
                 } 
-		 
+		
 	
 	
 }
@@ -224,9 +289,10 @@ public boolean cateisnull(int id){
 //删除博客	 
 		 
 	 
-public  boolean  deletblog(int id){
+public  boolean  deleteblog(int id){
 		 
-		 boolean f=false;
+	 
+		
 		 try{   
 			  
            
@@ -234,26 +300,56 @@ public  boolean  deletblog(int id){
 				//使用驱动  获取连接   获取 Statement
 			 Class.forName(driverClass);                 
              Connection con = DriverManager.getConnection(url,dbUser,dbPwd);
-             Statement stmt=con.createStatement();   
+            // Statement stmt=con.createStatement();   
+             PreparedStatement   pstmt=null;
+           
+             if(!cateisnull(id))
+             {
+             con.setAutoCommit(false); 
             
-            
-            
-            String deSql="delete from  blog where bId='"+id+"'";
-            
+             String decommentSql="delete from  comment where mBid='"+id+"'";
+             pstmt=con.prepareStatement(decommentSql);
+             pstmt.executeUpdate();
+             
+             
+             int blogcateid=getblogcateid(id);
+             String deblogsumsql = "update category set cBlogsum=cBlogsum-1 where cId ='"+blogcateid+"'";
+             pstmt=con.prepareStatement(deblogsumsql);
+             pstmt.executeUpdate();
+             
+            String deblogSql="delete from  blog where bId='"+id+"'";
+             pstmt=con.prepareStatement(deblogSql);
+             pstmt.executeUpdate();
   
-            
-            if(stmt.executeUpdate(deSql)==1){
-            	
-            	f=true;
-            }
-            
-            
-            
-              
-            stmt.close();   
-
-            con.close();   
-             return f;
+             con.commit();
+             pstmt.close();
+             con.close();
+             return true;
+             }else            
+             {
+            	 
+            	 con.setAutoCommit(false); 
+                 
+                 String decommentSql="delete from  comment where mBid='"+id+"'";
+                 pstmt=con.prepareStatement(decommentSql);
+                 pstmt.executeUpdate();
+                 
+                String deblogSql="delete from  blog where bId='"+id+"'";
+                 pstmt=con.prepareStatement(deblogSql);
+                 pstmt.executeUpdate();
+      
+                 con.commit();
+                 pstmt.close();
+                 con.close();
+                 return true;
+            	 
+            	 
+            	 
+             }
+             
+             
+             
+             
   
 		 }catch(Exception ex)
               {   
@@ -261,7 +357,7 @@ public  boolean  deletblog(int id){
                   System.out.print("连接失败！！<br>"+ex.toString());   
                   return false;
 
-             } 
+             }
 		 	 
 		 
 }
@@ -638,7 +734,7 @@ public ResultSet selectblogpagebycateid(int cateid,int pageSize,int pageNow){
 
 
 
-//分页查询博客
+
 
 public ResultSet selectblogpagebysql(String sql,int pageSize,int pageNow){
 	

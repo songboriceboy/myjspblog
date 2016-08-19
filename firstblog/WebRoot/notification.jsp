@@ -137,6 +137,7 @@ if(login==null){
     				<th>类型</th>
     				<th>内容</th>  
     				<th>时间</th> 
+    				<th>操作</th> 
 				</tr> 
 			
 				
@@ -195,6 +196,8 @@ noticontent=notirs.getString("nContent");
     				<td><%=notirs.getString("nType")%></td> 
     				<td><%=noticontent%></td>   
     				<td><%=notirs.getString("nDate")%></td> 
+    				<td> <a href="DeleteNoti?id=<%=notirs.getInt("nId")%>"><input type="image" src="images/icn_trash.png" title="Trash"></a>
+   				 	</td> 
    				
 				</tr>  
    
@@ -244,6 +247,31 @@ noticontent=notirs.getString("nContent");
 		<article class="module width_quarter">
 
 
+  <%
+String msg="";
+msg=(String)request.getAttribute("ms");
+if(msg==null){
+msg="";
+}else{
+request.removeAttribute("ms");
+}
+
+
+%>
+
+<%=msg %>
+  
+<script type="text/javascript">
+window.onload=function(){
+if("<%=msg%>"!="")
+
+{alert("<%=msg%>");
+self.location="notification.jsp";
+}
+
+}				 
+</script>  
+  
 
 
 

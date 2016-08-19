@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-
+<%@ page import="dal.commentreply"%>
 <%@ page import="dal.admindal"%>
 <%@ page import="utils.option"%>
 <%@ page import="utils.photosrcoption"%>
@@ -125,7 +125,7 @@ response.sendRedirect("blogsetting.jsp");
     margin: 2px 6px 16px 0px;
     }
     .elegant-aero textarea{
-    height:300px;
+    height:200px;
     padding: 5px 0px 0px 5px;
     width: 75%;
     }
@@ -187,11 +187,7 @@ function reset_form()
          }
          
       
-       if(form.message.value.length>5000) {
-                alert("请输入合适心情!");
-                form.message.focus();
-                return false;
-           }
+      
        
       
       if(form.authcode.value=='') {
@@ -413,7 +409,7 @@ bcateid=rs.getInt("bCateid");
    
 <div>
      <center>
-        <figure><img src="<%=rs.getString("bPicsrc")%>"></figure>
+        <figure><img height="100px" width="100px" src="<%=rs.getString("bPicsrc")%>"></figure>
         <h3><a href="pageview.jsp?id=<%=rs.getInt("bId")%>">  <font size="3" color="red">  <%=rs.getString("bTitle")%> </font> </a></h3>
      </center>
         
@@ -466,6 +462,19 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
 <div class="mcontent">
 <%=comrs.getString("mContent")%>
+
+<% 
+commentreply cmrpl=new commentreply();
+int cmid=comrs.getInt("mId");
+ ResultSet cmrplrs=cmrpl.searchallreplybycmid(cmid);
+ while(cmrplrs.next()){
+%>
+
+<p>      回复：<%=cmrplrs.getString("creply") %> 时间：  <%=cmrplrs.getString("crDate") %></p>
+      <br>
+
+<%} %>
+
 </div>
 
  
@@ -538,13 +547,12 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
 <%
 String msg="";
-msg=(String)session.getAttribute("ms");
+msg=(String)request.getAttribute("ms");
 if(msg==null){
 msg="";
 }else{
-session.removeAttribute("ms");
+request.removeAttribute("ms");
 }
-
 
 %>
 
@@ -585,6 +593,7 @@ window.onload = function ()
         if("<%=msg%>"!="")
       {
            alert("<%=msg%>");
+           self.location="pageview.jsp?id=<%=blogid%>";
 
          }
   

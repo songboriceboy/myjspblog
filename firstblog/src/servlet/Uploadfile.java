@@ -9,6 +9,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -114,9 +115,12 @@ public class Uploadfile extends HttpServlet {
    //返回错误信息
    
 
-	 session=request.getSession();
-	 session.setAttribute("ms",ms);  
-	 response.sendRedirect("file.jsp");
+	// session=request.getSession();
+	// session.setAttribute("ms",ms);  
+	// response.sendRedirect("file.jsp");
+   request.setAttribute("ms", ms);
+	RequestDispatcher rd=request.getRequestDispatcher("file.jsp");
+	rd.forward(request,response);
    
    
 //   跳转到上传成功提示页面
@@ -126,9 +130,12 @@ public class Uploadfile extends HttpServlet {
                 	   
                 	   
                
-                		 session=request.getSession();
-                		 session.setAttribute("ms",ms);  
-                		 response.sendRedirect("file.jsp");
+                		// session=request.getSession();
+                		// session.setAttribute("ms",ms);  
+                		// response.sendRedirect("file.jsp");
+                	   request.setAttribute("ms", ms);
+                		RequestDispatcher rd=request.getRequestDispatcher("file.jsp");
+                		rd.forward(request,response);
                 	   
                      }
   

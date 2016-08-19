@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -105,21 +106,28 @@ if(session.getAttribute("code").equals(authcode))
             commentdal comdal=new commentdal();
             notificationdal notidal=new notificationdal();
             
-            if(comdal.insertcomment(md))
+            if(comdal.insertcomment(md,noti,id))
             {
-             bgdal.updateblogcomment(id);
-             notidal.insertnoti(noti);
+             //bgdal.updateblogcomment(id);
+            // notidal.insertnoti(noti);
              ms="评论成功";
-             session=request.getSession();
-        	 session.setAttribute("ms",ms);  
-        	 response.sendRedirect("pageview.jsp?id="+blogid);
+             //session=req.getSession();
+         	   // session.setAttribute("ms",ms);
+            // res.sendRedirect("pageview.jsp?id="+blogid);
+              request.setAttribute("ms", ms);
+      		RequestDispatcher rd=request.getRequestDispatcher("pageview.jsp?id="+blogid);
+      		rd.forward(request,response);
+               
               
             }else
             {
             	ms+="评论失败";
-                session=request.getSession();
-           	 session.setAttribute("ms",ms);  
-           	 response.sendRedirect("pageview.jsp?id="+blogid);
+            	 //session=req.getSession();
+          	   // session.setAttribute("ms",ms);
+             // res.sendRedirect("pageview.jsp?id="+blogid);
+               request.setAttribute("ms", ms);
+       		RequestDispatcher rd=request.getRequestDispatcher("pageview.jsp?id="+blogid);
+       		rd.forward(request,response);
             }
           
                       
@@ -130,9 +138,12 @@ if(session.getAttribute("code").equals(authcode))
 {
 
 	  ms+="验证码不正确评论失败";
-     session=request.getSession();
-	 session.setAttribute("ms",ms);  
-	 response.sendRedirect("pageview.jsp?="+blogid);
+	  //session=req.getSession();
+	   // session.setAttribute("ms",ms);
+   // res.sendRedirect("pageview.jsp?id="+blogid);
+     request.setAttribute("ms", ms);
+		RequestDispatcher rd=request.getRequestDispatcher("pageview.jsp?id="+blogid);
+		rd.forward(request,response);
 
 }     
 	  

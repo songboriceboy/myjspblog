@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dal.catedal;
-import dal.blogdal;
+
 
 public class Deletecate extends HttpServlet {
 	
@@ -33,38 +34,35 @@ public class Deletecate extends HttpServlet {
 		}else{
 			
 			catedal ctdal=new catedal();
-			blogdal bgdal=new blogdal();
+			//blogdal bgdal=new blogdal();
 		
-			if(bgdal.deletblogcate(id))
-			{
+			
 				
 				if(ctdal.deletcate(id))
 				{
-					ms+="类别删除成功";
-					session=req.getSession();
-					 session.setAttribute("ms",ms);
-				res.sendRedirect("catelist.jsp");
+					ms="类别删除成功";
+					//session=req.getSession();
+					// session.setAttribute("ms",ms);
+				//res.sendRedirect("catelist.jsp");
+					
+		                 req.setAttribute("ms", ms);
+		         		RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+		         		rd.forward(req,res);
+					
 				}
 				else{
 					
-					ms+="类别删除失败";
-					session=req.getSession();
-					 session.setAttribute("ms",ms);
-				res.sendRedirect("catelist.jsp");
+					ms="类别删除失败";
+					//session=req.getSession();
+					// session.setAttribute("ms",ms);
+				//res.sendRedirect("catelist.jsp");
+					
+		                 req.setAttribute("ms", ms);
+		         		RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+		         		rd.forward(req,res);
+					
 				}
 				
-				
-				
-			}else{
-				
-				ms+="类别删除失败";
-				session=req.getSession();
-				 session.setAttribute("ms",ms);
-			    res.sendRedirect("catelist.jsp");
-				
-			   }
-						
-			
 		
 			
 		}

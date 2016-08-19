@@ -12,6 +12,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -260,9 +261,13 @@ else{
           {ms="所有设置正确"; }
           
           
- 		 session=req.getSession();
- 		 session.setAttribute("ms",ms);  
- 		 res.sendRedirect("option.jsp");
+ 		// session=req.getSession();
+ 		 //session.setAttribute("ms",ms);  
+ 		// res.sendRedirect("option.jsp");
+        
+			  req.setAttribute("ms", ms);
+       		RequestDispatcher rd=req.getRequestDispatcher("option.jsp");
+       		rd.forward(req,res);
  		 
 }
 		  

@@ -1,7 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+
 import model.blog;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -94,16 +97,21 @@ if(cate=="")
 	         if(bgdal.updateblogcatenulltonull(upbg))
 	         { 
 	        	 ms="博客成功更新";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-	        	 res.sendRedirect("bloglist.jsp");
+	        	//session=req.getSession();
+	 			// session.setAttribute("ms",ms);
+	 			//res.sendRedirect("bloglist.jsp");
+	                  req.setAttribute("ms", ms);
+	          		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+	          		rd.forward(req,res);
 	         }else
 	         {
 	        	 ms+="博客更新失败";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-	        	 res.sendRedirect("bloglist.jsp");
-	        	}
+	        	//session=req.getSession();
+	 			// session.setAttribute("ms",ms);
+	 			//res.sendRedirect("bloglist.jsp");
+	                  req.setAttribute("ms", ms);
+	          		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+	          		rd.forward(req,res);	        	}
 	         
 	         
           }else{         	  // 现在为空 博文类别开始不为空  减少类别数  更新博文
@@ -114,17 +122,23 @@ if(cate=="")
              {
             	  if(bgdal.updateblogcatenotnulltonull(upbg)){
             		  ms="博客成功更新";
-    	        	  session=req.getSession();
-    	 			 session.setAttribute("ms",ms);
-    	        	 res.sendRedirect("bloglist.jsp");
+            		//session=req.getSession();
+          			// session.setAttribute("ms",ms);
+          			//res.sendRedirect("bloglist.jsp");
+                           req.setAttribute("ms", ms);
+                   		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+                   		rd.forward(req,res);
             	        }
             	  
               }else
               {
             	  ms+="博客更新失败";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-	        	 res.sendRedirect("bloglist.jsp");
+            	//session=req.getSession();
+      			// session.setAttribute("ms",ms);
+      			//res.sendRedirect("bloglist.jsp");
+                       req.setAttribute("ms", ms);
+               		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+               		rd.forward(req,res);
             	}
               
           }	
@@ -145,17 +159,23 @@ if(cate=="")
  	         {   
  	            ctdal.addcateblogsum(cateid);
  	             ms="博客成功更新";
-     	        session=req.getSession();
-			    session.setAttribute("ms",ms);
-     	        res.sendRedirect("bloglist.jsp");
+ 	          //session=req.getSession();
+ 				// session.setAttribute("ms",ms);
+ 				//res.sendRedirect("bloglist.jsp");
+ 	                 req.setAttribute("ms", ms);
+ 	         		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+ 	         		rd.forward(req,res);
      	 
      	 
  	         }else
  	         {
  	        	  ms+="博客更新失败";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-	        	 res.sendRedirect("bloglist.jsp");
+ 	        	//session=req.getSession();
+ 	 			// session.setAttribute("ms",ms);
+ 	 			//res.sendRedirect("bloglist.jsp");
+ 	                  req.setAttribute("ms", ms);
+ 	          		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+ 	          		rd.forward(req,res);
  	        	}
  	         
  	         
@@ -165,15 +185,21 @@ if(cate=="")
             	   ctdal.decateblogsum(agocateid);
             	   ctdal.addcateblogsum(cateid);
             	   ms="博客成功更新";
- 	        	  session=req.getSession();
- 	 			 session.setAttribute("ms",ms);
- 	        	 res.sendRedirect("bloglist.jsp");
+            	 //session=req.getSession();
+       			// session.setAttribute("ms",ms);
+       			//res.sendRedirect("bloglist.jsp");
+                        req.setAttribute("ms", ms);
+                		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+                		rd.forward(req,res);
                }else
                {
             	   ms+="博客更新失败";
- 	        	  session=req.getSession();
- 	 			 session.setAttribute("ms",ms);
- 	        	 res.sendRedirect("bloglist.jsp");
+            	 //session=req.getSession();
+       			// session.setAttribute("ms",ms);
+       			//res.sendRedirect("bloglist.jsp");
+                        req.setAttribute("ms", ms);
+                		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+                		rd.forward(req,res);
              	}
                
            }	

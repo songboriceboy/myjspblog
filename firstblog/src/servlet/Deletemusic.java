@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServlet;
 
 import java.io.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -57,14 +58,22 @@ public class Deletemusic extends HttpServlet {
 				      if(deleteMusic(path))
 						 {
 						  ms="“Ù¿÷…æ≥˝≥…π¶";
-			        	  session=req.getSession();
-			 			 session.setAttribute("ms",ms);
-						  res.sendRedirect("music.jsp");
+						  // session=req.getSession();
+				 			// session.setAttribute("ms",ms);
+							 // res.sendRedirect("music.jsp");
+							
+					                 req.setAttribute("ms", ms);
+					         		RequestDispatcher rd=req.getRequestDispatcher("music.jsp");
+					         		rd.forward(req,res);
 						 }else{
 							 ms="“Ù¿÷…æ≥˝ ß∞‹";
-				        	  session=req.getSession();
-				 			 session.setAttribute("ms",ms);
-							  res.sendRedirect("music.jsp");
+							 // session=req.getSession();
+					 			// session.setAttribute("ms",ms);
+								 // res.sendRedirect("music.jsp");
+								
+						                 req.setAttribute("ms", ms);
+						         		RequestDispatcher rd=req.getRequestDispatcher("music.jsp");
+						         		rd.forward(req,res);
 							 
 						 }
 				  }

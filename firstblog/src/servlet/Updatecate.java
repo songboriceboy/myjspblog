@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -57,43 +58,54 @@ if(req.getParameter("catename")!=""&&req.getParameter("catename").length()<50)
 
 
 
-      
-if(catename!=""){
+catedal ctdal=new catedal();   
+if(catename!=""&&!ctdal.hassamename(catename)){
 	
-catedal ctdal=new catedal();
+
 blogdal bgdal=new blogdal();
 
 if(ctdal.updatecate(cateid,catename))
 {
-	if(bgdal.updateblogcatenamebycateid(cateid,catename))
-	{
+	
 		ms="成功更新类别";
-		session=req.getSession();
-		 session.setAttribute("ms",ms);
-		res.sendRedirect("catelist.jsp");
-	}else{
+		//session=req.getSession();
+		// session.setAttribute("ms",ms);
+	//res.sendRedirect("catelist.jsp");
+		
+             req.setAttribute("ms", ms);
+     		RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+     		rd.forward(req,res);
+		
+}
+	else{
 		
 		ms+="更新类别失败";
-		session=req.getSession();
-		 session.setAttribute("ms",ms);
-		res.sendRedirect("catelist.jsp");
+		//session=req.getSession();
+		// session.setAttribute("ms",ms);
+	//res.sendRedirect("catelist.jsp");
+		
+             req.setAttribute("ms", ms);
+     		RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+     		rd.forward(req,res);
+		
 	}
-
 }
+
 else
 {
 ms+="更新类别失败";
-session=req.getSession();
-session.setAttribute("ms",ms);
-res.sendRedirect("catelist.jsp");
+//session=req.getSession();
+// session.setAttribute("ms",ms);
+//res.sendRedirect("catelist.jsp");
+
+     req.setAttribute("ms", ms);
+		RequestDispatcher rd=req.getRequestDispatcher("catelist.jsp");
+		rd.forward(req,res);
+
 }    
-	} else
-	    {
-		ms+="更新类别失败";
-		session=req.getSession();
-		 session.setAttribute("ms",ms);
-		res.sendRedirect("catelist.jsp");
-		} 
+	
+  
+  } 
         
         
          
@@ -101,7 +113,7 @@ res.sendRedirect("catelist.jsp");
 
 	
 
-	}
+	
   
   
 }

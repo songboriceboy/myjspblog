@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -118,27 +119,35 @@ if(ctdal.hassamename(cate))  //检测类别是否存在
          
      if(bgdal.insertblog(bg))
      {
-    	 ctdal.addcateblogsum(cateid);
+    	// ctdal.addcateblogsum(cateid);
      ms="成功添加博客";
-     session=req.getSession();
-	 session.setAttribute("ms",ms);
-     res.sendRedirect("bloglist.jsp");
+    // session=req.getSession();
+	// session.setAttribute("ms",ms);
+    // res.sendRedirect("bloglist.jsp");
+     req.setAttribute("ms", ms);
+		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+		rd.forward(req,res);
      }
      else
      {
      ms+="--博客添加失败";
-     session=req.getSession();
-	 session.setAttribute("ms",ms);
-     res.sendRedirect("bloglist.jsp");
+    // session=req.getSession();
+	 //session.setAttribute("ms",ms);
+    // res.sendRedirect("bloglist.jsp");
+     req.setAttribute("ms", ms);
+		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+		rd.forward(req,res);
      }
      
      
 }else{
 	ms+="--类别不存在博客添加失败";
-    session=req.getSession();
-	 session.setAttribute("ms",ms);
-    res.sendRedirect("bloglist.jsp");
-	
+    //session=req.getSession();
+	// session.setAttribute("ms",ms);
+   // res.sendRedirect("bloglist.jsp");
+	req.setAttribute("ms", ms);
+	RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+	rd.forward(req,res);
 }
 
 
@@ -148,9 +157,12 @@ if(ctdal.hassamename(cate))  //检测类别是否存在
 
 	} else{
 		ms+="--博客添加失败";
-		session=req.getSession();
-		 session.setAttribute("ms",ms);
-		res.sendRedirect("bloglist.jsp");
+		//session=req.getSession();
+		// session.setAttribute("ms",ms);
+		//res.sendRedirect("bloglist.jsp");
+		req.setAttribute("ms", ms);
+		RequestDispatcher rd=req.getRequestDispatcher("bloglist.jsp");
+		rd.forward(req,res);
 	      }
         
         

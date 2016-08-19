@@ -142,11 +142,11 @@ function reset_form()
   
    <%
 String msg="";
-msg=(String)session.getAttribute("ms");
+msg=(String)request.getAttribute("ms");
 if(msg==null){
 msg="";
 }else{
-session.removeAttribute("ms");
+request.removeAttribute("ms");
 }
 
 
@@ -158,7 +158,9 @@ session.removeAttribute("ms");
 window.onload=function(){
 if("<%=msg%>"!="")
 
-{alert("<%=msg%>");}
+{alert("<%=msg%>");
+self.location="resetpwd.jsp";
+}
 
 }				 
 </script>  

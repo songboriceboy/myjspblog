@@ -2,6 +2,7 @@ package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -21,6 +22,48 @@ public class notificationdal {
 	Connection con = null;
 	
 
+	
+
+	// 删除通知
+	public  boolean  deletenoti(int id)
+	 {
+		
+		 boolean f=false;
+		 
+		 
+		 try{   
+			  
+	       
+	 
+			//使用驱动  获取连接   获取 Statement
+	   	    Class.forName(driverClass);
+	   	     con = DriverManager.getConnection(url,dbUser,dbPwd); 
+	         Statement stmt=con.createStatement();  	 
+	         String delnsql="delete from notification  where nId=\'"+id+"\'";
+             if(stmt.executeUpdate(delnsql)==1) 
+             {
+          	   f=true;
+             
+             }
+              
+             stmt.close();   
+             con.close(); 
+              return f;     
+
+		 }catch(Exception ex)
+	            {   
+
+	         System.out.print("连接失败！！<br>"+ex.toString());   
+	          return false;
+
+	           } 
+		 
+		 
+	}	
+	
+	
+	
+	
 	
 	
 public  boolean insertnoti(notification noti) {

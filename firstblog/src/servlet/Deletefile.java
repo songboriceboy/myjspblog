@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -54,14 +55,23 @@ public class Deletefile extends HttpServlet {
 				 if(deleteFile(path))
 				 {
 				  ms="文件删除成功";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-				  res.sendRedirect("file.jsp");
+	        	 // session=req.getSession();
+	 			// session.setAttribute("ms",ms);
+				 // res.sendRedirect("file.jsp");
+				
+		                 req.setAttribute("ms", ms);
+		         		RequestDispatcher rd=req.getRequestDispatcher("file.jsp");
+		         		rd.forward(req,res);
+				  
 				 }else{
 					 ms="文件删除失败";
-		        	  session=req.getSession();
-		 			 session.setAttribute("ms",ms);
-					  res.sendRedirect("file.jsp");
+					 // session=req.getSession();
+			 			// session.setAttribute("ms",ms);
+						 // res.sendRedirect("file.jsp");
+						
+				                 req.setAttribute("ms", ms);
+				         		RequestDispatcher rd=req.getRequestDispatcher("file.jsp");
+				         		rd.forward(req,res);
 					 
 				 }
 				  

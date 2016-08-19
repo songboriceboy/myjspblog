@@ -3,6 +3,7 @@ import java.sql.*;
 
 import model.liuyan;
 import utils.dbconstant;
+import model.notification;
 
 public class liuyandal {
 	
@@ -92,7 +93,7 @@ public ResultSet selectliuyanpage(int pageSize,int pageNow){
 
 	//插入留言
 	
-public  boolean insertliuyan(liuyan ly) {
+public  boolean insertliuyan(liuyan ly,notification noti) {
 	                 
 		 boolean f=false;
 		 
@@ -104,22 +105,28 @@ public  boolean insertliuyan(liuyan ly) {
 	            	//使用驱动  获取连接   获取 Statement
 	   			   Class.forName(driverClass);                 
 	   	           Connection con = DriverManager.getConnection(url,dbUser,dbPwd);
-	   	           Statement stmt=con.createStatement(); 
-	  
+	   	          // Statement stmt=con.createStatement(); 
+	   	        PreparedStatement   pstmt=null;
+	            
+	            con.setAutoCommit(false); 
+	            
+	          
+	           
 	                    
 	                      
-	                    String sql= "insert into liuyan(`lUser`,`lEmail`,`lContent`,`lPicsrc`,`lDate`) values(\'"+ly.getUserName()+"\',\'"+ly.getUserEmail()+"\',\'"+ly.getMessage()+"\',\'"+ly.getPicSrc()+"\',null)";
-	                   
-	                     System.out.print(sql);
-	                                          
+	                    String inliuyansql= "insert into liuyan(`lUser`,`lEmail`,`lContent`,`lPicsrc`,`lDate`) values(\'"+ly.getUserName()+"\',\'"+ly.getUserEmail()+"\',\'"+ly.getMessage()+"\',\'"+ly.getPicSrc()+"\',null)";
+	                    pstmt=con.prepareStatement(inliuyansql);
+	    	            pstmt.executeUpdate();
+	                    
+	                    
+	                    String innotisql= "insert into notification(`nName`,`nContent`,`nType`,`nDate`) values(\'"+noti.getName()+"\',\'"+noti.getContent()+"\',\'"+noti.getType()+"\',null)";
+	                    pstmt=con.prepareStatement(innotisql);
+	    	            pstmt.executeUpdate();                    
 	                      
-	                      if(stmt.executeUpdate(sql)==1) //执行查询 
-		                     {
-	                    	  f=true;
-		                     }
-		                     stmt.close();   
-		                      con.close(); 
-		                   return f;   
+	    	            con.commit();
+	    	            pstmt.close();
+	    	            con.close();
+	    	            return true; 
 	   
 	          
 	       }
@@ -137,7 +144,7 @@ public  boolean insertliuyan(liuyan ly) {
 	 
 
 
-
+//查询所有留言
 public  ResultSet searchliuyan(){
 		 		 
 		 try{   
@@ -176,6 +183,126 @@ return null;
 	 
 	 
 	
+
+
+
+
+
+
+
+//通过id查询留言
+
+
+public  ResultSet searchliuyanbyid(int id){
+	 
+	 try{   
+		  
+      
+
+		//使用驱动  获取连接   获取 Statement
+		   Class.forName(driverClass);                 
+          Connection con = DriverManager.getConnection(url,dbUser,dbPwd);
+          Statement stmt=con.createStatement();   
+		 
+   
+
+       String liuyansql="select * from liuyan where lId='"+id+"'";                     
+
+       ResultSet rs=stmt.executeQuery(liuyansql); //执行查询 
+      
+         
+ // stmt.close();   
+
+ // con.close();   
+  return rs;
+
+	 }
+
+catch(Exception ex)
+{   
+
+System.out.print("连接失败！！<br>"+ex.toString());   
+return null;
+
+} 
+	 
+	 
 }
+
+
+
+
+
+
+
+
+//通过id删除留言
+
+
+public  boolean deleteliuyanbyid(int id){
+	boolean f=false;
+
+	 
+	 try{   
+		  
+    
+
+		//使用驱动  获取连接   获取 Statement
+		   Class.forName(driverClass);                 
+        Connection con = DriverManager.getConnection(url,dbUser,dbPwd);
+        //Statement stmt=con.createStatement();   
+		 
+        PreparedStatement   pstmt=null;     
+       
+       con.setAutoCommit(false); 
+       
+       String delliuyansql="delete from liuyan where lId='"+id+"'";
+       pstmt=con.prepareStatement(delliuyansql);
+       pstmt.executeUpdate();
+       String delreplysql="delete from liuyanreply where lyId='"+id+"'";
+       pstmt=con.prepareStatement(delreplysql);
+       pstmt.executeUpdate();
+       con.commit();
+       pstmt.close();
+       con.close();
+       return true;          
+
+
+	 }
+
+catch(Exception ex)
+{   
+
+System.out.print("连接失败！！<br>"+ex.toString());   
+return false;
+
+} 
+	 
+	 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
 
 

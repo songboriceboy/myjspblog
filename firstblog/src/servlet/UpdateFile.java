@@ -3,6 +3,7 @@ package servlet;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -73,27 +74,40 @@ public class UpdateFile extends HttpServlet {
 			switch(type){
 			case "f":
 				  ms="文件重命名成功";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-				res.sendRedirect("file.jsp");
+	        	 // session=req.getSession();
+	 			// session.setAttribute("ms",ms);
+				//res.sendRedirect("file.jsp");
+			
+				  req.setAttribute("ms", ms);
+	         		RequestDispatcher rdf=req.getRequestDispatcher("file.jsp");
+	         		rdf.forward(req,res);
 			break;
 			case "m":
 				ms="音乐重命名成功";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-				res.sendRedirect("music.jsp");
+	        	  //session=req.getSession();
+	 			 //session.setAttribute("ms",ms);
+				//res.sendRedirect("music.jsp");
+				req.setAttribute("ms", ms);
+         		RequestDispatcher rdm=req.getRequestDispatcher("music.jsp");
+         		rdm.forward(req,res);
 			break;
 			case "p":
 				ms="图片重命名成功";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-				res.sendRedirect("photos.jsp");
+	        	 // session=req.getSession();
+	 			// session.setAttribute("ms",ms);
+				//res.sendRedirect("photos.jsp");
+				req.setAttribute("ms", ms);
+         		RequestDispatcher rdp=req.getRequestDispatcher("photos.jsp");
+         		rdp.forward(req,res);
 			break;
 			case "v":
 				ms="视频重命名成功";
-	        	  session=req.getSession();
-	 			 session.setAttribute("ms",ms);
-				res.sendRedirect("video.jsp");
+	        	//  session=req.getSession();
+	 			// session.setAttribute("ms",ms);
+				//res.sendRedirect("video.jsp");
+				req.setAttribute("ms", ms);
+         		RequestDispatcher rdv=req.getRequestDispatcher("video.jsp");
+         		rdv.forward(req,res);
 			break;
 			}
 			

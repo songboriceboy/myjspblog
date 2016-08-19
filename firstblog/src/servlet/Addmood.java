@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServlet;
 
 
 
+
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -71,23 +73,32 @@ public class Addmood extends HttpServlet{
 	                   if(mddal.insertmood(md))
 	                  { 
 	                         ms="成功添加心情";
-	                      res.sendRedirect("moodlist.jsp");
-	                      session=req.getSession();
-	             		 session.setAttribute("ms",ms);
+	                     // res.sendRedirect("moodlist.jsp");
+	                    //  session=req.getSession();
+	             		// session.setAttribute("ms",ms);
+	                         req.setAttribute("ms", ms);
+	                 		RequestDispatcher rd=req.getRequestDispatcher("moodlist.jsp");
+	                 		rd.forward(req,res);
 	                   }
 	                    else
 	                 {
 	                    ms+="添加心情失败";
-	                    session=req.getSession();
-	           		     session.setAttribute("ms",ms);
-	                      res.sendRedirect("moodlist.jsp");
+	                    // res.sendRedirect("moodlist.jsp");
+	                    //  session=req.getSession();
+	             		// session.setAttribute("ms",ms);
+	                         req.setAttribute("ms", ms);
+	                 		RequestDispatcher rd=req.getRequestDispatcher("moodlist.jsp");
+	                 		rd.forward(req,res);
 	                 }    
 	            
 	              }else{
 	            	  ms+="添加心情失败";
-	            	  session=req.getSession();
-	         		  session.setAttribute("ms",ms);
-	            	  res.sendRedirect("moodlist.jsp");
+	            	  // res.sendRedirect("moodlist.jsp");
+	                    //  session=req.getSession();
+	             		// session.setAttribute("ms",ms);
+	                         req.setAttribute("ms", ms);
+	                 		RequestDispatcher rd=req.getRequestDispatcher("moodlist.jsp");
+	                 		rd.forward(req,res);
 	              }
 	          
 	          

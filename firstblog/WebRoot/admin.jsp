@@ -223,6 +223,8 @@ if(login==null){
 			<li class="icn_edit_article"><a href="addmood.jsp">添加心情</a></li>
 			<li class="icn_categories"><a href="catelist.jsp">类别管理</a></li>
 			<li class="icn_tags"><a href="bloglist.jsp">博文列表</a></li>
+			<li class="icn_edit_article"><a href="liuyanlist.jsp">留言管理</a></li>
+			<li class="icn_edit_article"><a href="commentlist.jsp">评论管理</a></li>
 		</ul>
 		<h3>用户</h3>
 		<ul class="toggle">
@@ -373,8 +375,8 @@ bcateid=blogrs.getInt("bCateid");
    
 				<tr> 
    					<td><input type="checkbox"></td> 
-    				<td><%=blogrs.getString("bTitle")%></td> 
-    				<td><%=bcatename%></td> 
+    				<td><a href="pageview.jsp?id=<%=blogrs.getInt("bId")%>"> <%=blogrs.getString("bTitle")%> </a></td> 
+    				<td> <a href="cate.jsp?id=<%=bcateid%>"> <%=bcatename%> </a> </td> 
     				<td><%=blogrs.getString("bDate")%></td> 
    				 	<td><a href="editblog.jsp?id=<%=blogrs.getString("bId")%>"><input type="image" src="images/icn_edit.png" title="Edit">  </a> <a href="DeletBlog?id=<%=blogrs.getString("bId")%>"><input type="image" src="images/icn_trash.png" title="Trash"></a></td> 
 				</tr>  
@@ -531,8 +533,8 @@ $("#picsrc").attr("value", "images/"+faceid+".jpg");
 			<footer>
 				<div class="submit_link">
 					<select>
-						<option>草稿</option>
-						<option>发布</option>
+						<option>推荐</option>
+						<option>不推荐</option>
 					</select>
 					<input type="submit" value="发布" class="alt_btn" onclick="return check(this.form)">
 					<input type="button" value="重置" onclick="reset_form();">

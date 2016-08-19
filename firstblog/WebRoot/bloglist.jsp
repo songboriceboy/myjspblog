@@ -178,13 +178,22 @@ pageCount=browCount/pageSize+1;
 ResultSet blogrs=bgdal.selectblogpage(pageSize, pageNow);
 
 while(blogrs.next()){
+String bcatename="";
+int bcateid=1;
+if(blogrs.getString("bCatename")==null)
+{
+bcatename="没有分类";
+}else{
+bcatename=blogrs.getString("bCatename");
+bcateid=blogrs.getInt("bCateid");
+}
 %>
    
    
 				<tr> 
    					<td><input type="checkbox"></td> 
-    				<td><%=blogrs.getString("bTitle")%></td> 
-    				<td><%=blogrs.getString("bCatename")%></td> 
+    				<td><a href="pageview.jsp?id=<%=blogrs.getInt("bId")%>"> <%=blogrs.getString("bTitle")%> </a></td> 
+    				<td> <a href="cate.jsp?id=<%=bcateid%>"> <%=bcatename%> </a> </td> 
     				<td><%=blogrs.getString("bDate")%></td> 
    				 	<td><a href="editblog.jsp?id=<%=blogrs.getString("bId")%>"><input type="image" src="images/icn_edit.png" title="Edit">  </a> <a href="DeletBlog?id=<%=blogrs.getString("bId")%>"><input type="image" src="images/icn_trash.png" title="Trash"></a>				 	
    				 	<a href="admin.jsp#publog">添加 </a>
@@ -244,11 +253,11 @@ while(blogrs.next()){
 
  <%
 String msg="";
-msg=(String)session.getAttribute("ms");
+msg=(String)request.getAttribute("ms");
 if(msg==null){
 msg="";
 }else{
-session.removeAttribute("ms");
+request.removeAttribute("ms");
 }
 
 
@@ -261,6 +270,7 @@ window.onload=function(){
 if("<%=msg%>"!="")
 {
 alert("<%=msg%>");
+self.location="bloglist.jsp";
 }
 
 }

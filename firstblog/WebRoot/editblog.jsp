@@ -243,6 +243,7 @@ if(login==null){
 							%>
 							
 							<select id="cate" name="cate" style="width:92%;">
+							
 							<option><%=bcatename %></option>
 	<%
 }   
@@ -262,7 +263,7 @@ if(login==null){
                    ResultSet caters=ctdal.searchcate(); //执行查询
                    while(caters.next()){
 %> 
-    
+    <option></option>
 <option><%=caters.getString("cName")%></option>
 							
 <%
@@ -319,8 +320,8 @@ $("#picsrc").attr("value", "images/"+faceid+".jpg");
 			<footer>
 				<div class="submit_link">
 					<select>
-						<option>草稿</option>
-						<option>发布</option>
+						<option>推荐</option>
+						<option>不推荐</option>
 					</select>
 				
 					<input type="submit" value="发送" class="alt_btn" onclick="return check(this.form)">

@@ -85,53 +85,53 @@ gettime gt=new gettime();
 <form action="" method="post">
   
   
-<center><h1> <input type="text" name="h1" value="风云的个人简历(网页版)"> </h1></center>
+<center><h1> <input type="text" name="h1" size="35" value="风云的个人简历(网页版)"> </h1></center>
 <hr size=6 color=orange width=60% align="center">
-<center><pre><input type="text" name="h1" value="风云">制作人：软件学院  风云  学号：09123  编号：30</pre></center>
- <center><pre><input type="text" name="h1" value="风云">（个人博客：风云）</pre></center>
+<center><pre><input type="text" name="h1" size="50" value="制作人：软件学院  风云  学号：09123  编号：30"></pre></center>
+ <center><pre><input type="text" name="h1" value="（个人博客：风云）"></pre></center>
 <table cellspacing="0.9" border="1" align=center style='font-size:10.0pt'box="3">
-  <th bgcolor="#99CC33" colspan="7" style='width=520pt;text-align:center;line-height:35pt;color:#CC0000' align="center"><font size="+4"><i><big>风云的个人简历</big></i></font></th>
+  <th bgcolor="#99CC33" colspan="7" style='width=520pt;text-align:center;line-height:35pt;color:#CC0000' align="center"><font size="+4"><i><big><input type="text" name="h1" value="风云的个人简历"></big></i></font></th>
   <tr>
     <th bgcolor=#FDEBDF style='width=55pt;height=25pt'>姓名：</th>
     <td style='width=55pt'><input type="text" name="h1" value="风云"></td>
     <th bgcolor=#FDEBDF style='width=50pt'>出生日期:</th>
-    <td style='width=55pt'><input type="text" name="h1" value="风云">1991-04-23</td>
+    <td style='width=55pt'><input type="text" name="h1" value="1991-04-23"></td>
     <th bgcolor=#FDEBDF style='width=50pt'>姓别：</th>
-    <td style='width=40pt'><input type="text" name="h1" value="风云">男</td>
+    <td style='width=40pt'><input type="text" name="h1" value="男"></td>
     <th rowspan="6"><img src="images/01.jpg"   style='width=180pt;height=130pt'></th>
   </tr>
   <tr>
     <th bgcolor=#FDEBDF style=' height=25pt'>身份证：</th>
-    <td><input type="text" name="h1" value="风云">43042xxxxxxxxxxxxxxxxx</td>
+    <td><input type="text" name="h1" value="43042xxxxxxxxxxxxxxxxx"></td>
     <th bgcolor=#FDEBDF>户口：</th>
-    <td><input type="text" name="h1" value="风云">湖南·衡阳</td>
+    <td><input type="text" name="h1" value="湖南·衡阳"></td>
     <th bgcolor=#FDEBDF>婚姻状况：</th>
-    <td><input type="text" name="h1" value="风云">未婚</td>
+    <td><input type="text" name="h1" value="未婚"></td>
   </tr>
   <tr>
     <th bgcolor=#FDEBDF style='height=25pt'>目前月薪：</th>
-    <td><input type="text" name="h1" value="风云">2500～3600</td>
+    <td><input type="text" name="h1" value="2500～3600"></td>
     <th bgcolor=#FDEBDF>视力：</th>
-    <td><input type="text" name="h1" value="风云">近视</td>
+    <td><input type="text" name="h1" value="近视"></td>
     <th bgcolor=#FDEBDF>身高：</th>
-    <td><input type="text" name="h1" value="风云">173cm</td>
+    <td><input type="text" name="h1" value="173cm"></td>
   </tr>
   <tr>
     <th bgcolor=#FDEBDF style='height=25pt'>联系电话：</th>
-    <td><input type="text" name="h1" value="风云">15116457972</td>
+    <td><input type="text" name="h1" value="15116457972"></td>
     <th bgcolor=#FDEBDF>电子邮箱：</th>
-    <td ><a href="2890408644@qq.com"><input type="text" name="h1" value="风云">2890408644@qq.com</a></td>
+    <td ><a href="2890408644@qq.com"><input type="text" name="h1" value="2890408644@qq.com"></a></td>
     <th bgcolor=#FDEBDF>个人主页：</th>
     <
-    <td><a href="http://blog.csdn.net/judyge">个人blog</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://blog.csdn.net/judyge">个人空间</a></td>
+    <td><a href="http://blog.csdn.net/judyge"></a><input type="text" size="35" name="h1" value="http://blog.csdn.net/judyge"></td>
   </tr>
   <tr>
     <th bgcolor=#FDEBDF style='height=25pt'>目前所在地：</th>
-    <td ><input type="text" name="h1" value="风云">广东省广州市</td>
+    <td ><input type="text" name="h1" value="广东省广州市"></td>
     <th bgcolor=#FDEBDF style='height=25pt'>通讯地址：</th>
-    <td><input type="text" name="h1" value="风云">广东省广州市（510320）</td>
+    <td><input type="text" size="35" name="h1" value="广东省广州市（510320）"></td>
     <th bgcolor=#FDEBDF>工作时间：</th>
-    <td><input type="text" name="h1" value="风云">2010年</td>
+    <td><input type="text" name="h1" value="2010年"></td>
   </tr>
   <tr> </tr>
 
@@ -139,7 +139,7 @@ gettime gt=new gettime();
     <th bgcolor=#FDEBDF>专业实践经历</th>
     <td colspan="6"><p>
       <pre>
-<textarea rows="3" cols="20">
+<textarea rows="7" cols="80">
 
 </textarea>
  *2009年5月  个人博客 （jsp）【独立项目】 发博文 简历 相册 留言互动
@@ -150,14 +150,14 @@ gettime gt=new gettime();
   </tr>
   <tr>
     <th bgcolor=#FDEBDF style='height=25pt'>外语水平：</th>
-    <td colspan="6">外语语种：英语
-      &nbsp;   &nbsp; <input type="text" name="h1" value="风云"> 掌握程度：一般 &nbsp;       &nbsp;   <input type="text" name="h1" value="风云">口语能力：一般     &nbsp;   &nbsp; <input type="text" name="h1" value="风云"> 考级：六级</td>
+    <td colspan="6">外语语种：
+      &nbsp;   &nbsp; <input type="text" name="h1" value="英语"> 掌握程度： &nbsp;       &nbsp;   <input type="text" name="h1" value="一般">口语能力：     &nbsp;   &nbsp; <input type="text" name="h1" value="一般"> 考级：<input type="text" name="h1" value="六级"></td>
   </tr>
   <tr>
     <th bgcolor=#FDEBDF>所获奖励和证书</th>
     <td colspan="6"><p>
       <pre>
-  <textarea rows="3" cols="20">
+  <textarea rows="7" cols="80">
 
 </textarea>
  2009年10月 入党优秀高培成员
@@ -174,7 +174,7 @@ gettime gt=new gettime();
     <th style='height=25pt' bgcolor=#FDEBDF>教育经历：</th>
     <td colspan="6"><p>
       <pre>
-<textarea rows="3" cols="20">
+<textarea rows="7" cols="80">
 
 </textarea>
  *2005年9月-2008年6月  衡阳县第二中学
@@ -185,10 +185,11 @@ gettime gt=new gettime();
   <tr>
     <th style='height=25pt' bgcolor=#FDEBDF>主修课程：</th>
     <td colspan="6"><p>
- <textarea rows="3" cols="20">
+ <textarea rows="7" cols="80">
 
 </textarea>
- 《C语言程序设计》、《数据结构》、《SQL 2005数据库》、《ADO.net GUI应用程序开发》、《WEB应用程序开发》、
+ <br>《C语言程序设计》、《数据结构》、《SQL 2005数据库》、
+ </br>《ADO.net GUI应用程序开发》、《WEB应用程序开发》、
       《C#程序设计》、<br>《java 程序设计》、《UML与软件工程》、《网络通信技术与原理》等
   
     </td>
@@ -200,7 +201,7 @@ gettime gt=new gettime();
     <th style='height=25pt' bgcolor=#FDEBDF>社会实践经历：</th>
     <td colspan="6">
  <pre>
- <textarea rows="3" cols="20">
+ <textarea rows="7" cols="80">
 
 </textarea>
  *2009年9月-2010年10月：软件学院计算机协会会长
@@ -212,7 +213,7 @@ gettime gt=new gettime();
     <th style='height=25pt' bgcolor=#FDEBDF>自我评价：</th>
     <td colspan="6"><p>
       <pre>
-  <textarea rows="3" cols="20">
+  <textarea rows="7" cols="80">
 
 </textarea>
       ◎活泼开朗、乐观向上、待人热情、兴趣广泛、适应力强、上手快
@@ -230,15 +231,15 @@ gettime gt=new gettime();
   </tr>
   <tr>
     <th style='height=25pt' bgcolor=#FDEBDF>工作地点：</th>
-    <td colspan="6"><input type="text" name="h1" value="风云">北京、上海、深圳、广州、杭州</td>
+    <td colspan="6"><input type="text" size="50" name="h1" value="北京、上海、深圳、广州、杭州"></td>
   </tr>
   <tr>
     <th style='height=25pt' bgcolor=#FDEBDF>求职意向：</th>
-    <td colspan="6"><input type="text" name="h1" value="风云">高级程序员/网站开发/软件测试/项目经理</td>
+    <td colspan="6"><input type="text" size="50" name="h1" value="高级程序员/网站开发/软件测试/项目经理"></td>
   </tr>
     <tr>
     <th style='height=25pt' bgcolor=#FDEBDF>薪资要求：</th>
-    <td colspan="6"><input type="text" name="h1" value="风云">2500-4500 RMB/月</td>
+    <td colspan="6"><input type="text" size="50" name="h1" value="2500-4500 RMB/月"></td>
   </tr>
 </table>
 <br>

@@ -2,6 +2,8 @@ package dal;
 
 import java.sql.*;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import model.comment;
 import model.notification; 
 import utils.dbconstant;
@@ -157,6 +159,8 @@ public  boolean  insertcomment(comment md,notification noti,int id){
          con.setAutoCommit(false); 
          
          String incommentsql= "insert into comment(`mUser`,`mEmail`,`mContent`,`mDate`,`mBid`) values(\'"+md.getUserName()+"\',\'"+md.getUserEmail()+"\',\'"+md.getContent()+"\',"+"null,"+md.getBlogId()+")";
+        // incommentsql=StringEscapeUtils.escapeSql(incommentsql);
+         
          pstmt=con.prepareStatement(incommentsql);
          pstmt.executeUpdate();
          String innotisql= "insert into notification(`nName`,`nContent`,`nType`,`nDate`) values(\'"+noti.getName()+"\',\'"+noti.getContent()+"\',\'"+noti.getType()+"\',null)";

@@ -1,0 +1,171 @@
+
+
+
+//留言回复表
+CREATE TABLE `liuyanreply` (  
+  `lrId` int(11) NOT NULL AUTO_INCREMENT,  
+  `lreply` text NOT NULL,  
+  `lyId` int(11) NOT NULL, 
+  `lrDate` TIMESTAMP,
+  PRIMARY KEY (`lrId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE liuyanreply ADD CONSTRAINT fk_liuyanreply_liuyan FOREIGN KEY (lyId) REFERENCES liuyan(lId);
+
+//评论恢复表
+CREATE TABLE `commentreply` (  
+ `crId` int(11) NOT NULL AUTO_INCREMENT,  
+  `creply` text NOT NULL,  
+  `cmId` int(11) NOT NULL,
+  `crDate` TIMESTAMP, 
+  PRIMARY KEY (`crId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE commentreply ADD CONSTRAINT fk_commentreply_comment FOREIGN KEY (cmId) REFERENCES comment(mId);
+
+
+//建admin表
+CREATE TABLE `admin` (  
+  `uId` int(11) NOT NULL AUTO_INCREMENT,  
+  `uAccount` varchar(40) NOT NULL,  
+  `uPassword` varchar(100) NOT NULL, 
+  `uZiploc` varchar(100) NOT NULL,
+  `uAnswer` varchar(100) NOT NULL,
+  PRIMARY KEY (`uId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+//建notification表
+CREATE TABLE `notification` (  
+  `nId` int(11) NOT NULL AUTO_INCREMENT,  
+  `nName` varchar(100) NOT NULL,
+  `nType` varchar(40) NOT NULL,
+  `nContent` text NOT NULL, 
+  `nDate` TIMESTAMP,
+  PRIMARY KEY (`nId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+//建博客表
+
+CREATE TABLE `blog` (  
+  `bId` int(11) NOT NULL AUTO_INCREMENT,
+  `bUid` int(11),
+  `bPicsrc` varchar(100) NOT NULL,
+  `bAuthor` varchar(40) NOT NULL,
+  `bCateid` int(11),
+  `bCatename` varchar(50),
+  `bIstj` boolean NOT NULL,
+  `bTitle` varchar(100) NOT NULL,  
+  `bContent` text NOT NULL, 
+  `bDate` TIMESTAMP,
+  `bClicks` int(10) NOT NULL,
+  `bComments` int(10) NOT NULL,
+  PRIMARY KEY (`bId`)
+  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+//建类别表
+
+update category set cName="php",cDate=null where cId ='1'
+
+CREATE TABLE `category` (  
+  `cId` int(10) NOT NULL AUTO_INCREMENT,  
+  `cName` varchar(40) NOT NULL, 
+  `cDate` TIMESTAMP, 
+  `cBlogsum` int(10) NOT NULL,
+  PRIMARY KEY (`cId`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+//建评论表
+
+CREATE TABLE `comment` (  
+  `mId` int(11) NOT NULL AUTO_INCREMENT,  
+  `mUser` varchar(40) NOT NULL,  
+  `mEmail` varchar(50) NOT NULL,
+  `mContent` text NOT NULL,
+  `mDate` TIMESTAMP,
+  `mBid` int(11) NOT NULL,
+  PRIMARY KEY (`mId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `liuyan` (  
+  `lId` int(11) NOT NULL AUTO_INCREMENT, 
+  `lPicsrc` varchar(100) NOT NULL, 
+  `lUser` varchar(40) NOT NULL,  
+  `lEmail` varchar(50) NOT NULL,
+  `lContent` text NOT NULL,
+  `lDate` TIMESTAMP,
+  PRIMARY KEY (`lId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `mood` (  
+  `moId` int(10) NOT NULL AUTO_INCREMENT,
+  `mopicsrc` varchar(100) NOT NULL,   
+  `moContent` text NOT NULL, 
+  `moDate` TIMESTAMP, 
+  PRIMARY KEY (`moId`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `hits` (  
+  `hId` int(10) NOT NULL AUTO_INCREMENT,  
+  `hTimes` int(20) NOT NULL, 
+  `hDate` DATE NOT NULL, 
+  PRIMARY KEY (`hId`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+// 添加外键
+ALTER TABLE blog ADD CONSTRAINT fk_blog_admin FOREIGN KEY (bUid) REFERENCES admin(uId);
+ALTER TABLE blog ADD CONSTRAINT fk_blog_category FOREIGN KEY (bCateid) REFERENCES category(cId);
+
+
+ALTER TABLE comment ADD CONSTRAINT fk_comment_blog FOREIGN KEY (mBid) REFERENCES blog(bId);
+
+// 插入测试数据
+insert into admin(`uId`,`uAccount`,`uPassword`,`uZiploc`,`uAnswer`) values(1,'admin','E10ADC3949BA59ABBE56E057F20F883E','我的名字?','风云');
+
+ select * from hits;
+
+
+insert into category(`cName`,`cDate`) values('php',null);
+insert into category(`cName`,`cDate`,`cBlogsum`) values('jsp',null,0);
+
+insert into blog(`bUid`,`bAuthor`,`bCateid`,`bCatename`,`bIstj`,`bTitle`,`bContent`,`bDate`,`bClicks`,`bComments`) values(1,'root',1,'php',true,'hello php','hello asssssssssssssssssssss',null,0,0);
+insert into blog(`bUid`,`bAuthor`,`bCateid`,`bCatename`,`bIstj`,`bTitle`,`bContent`,`bDate`,`bClicks`,`bComments`) values(1,'admin',1,'jsp',true,'pppp','<p> 从前，我不相信爱情，现在我相信。世界上唯一比被爱更幸福的，就是去爱；唯一比被爱更幸运的，就是在茫茫人海中，找到值得爱的人。作家杜拉斯说“爱之于我，不是肌肤之亲，不是一蔬一饭，它是一种不死的欲望，是疲惫生活中的英雄梦想。” </p>
+        <p>可能我不懂得煽情，我学不会安慰别人，每次看到别人伤心，我总是生硬的问句怎么了，别想太多了。我学不会思念，即使很长时间没见，我也不会主动打电话发短信说句我好想你之类的话。每次想要为别人做什么的时候还总是态度强硬闹得不愉快，可这就是我的方式，如果爱我，请接受这样的我。 </p>
+        <p>若，能让你我一起走过，那么，我奢求是地老天荒的时候你仍然牵着我的手，然后慢慢的一起变老。在月下，我们一起听风切切的吟，听曲轻轻的扬。我想，生活中没有比这更醉人的浪漫。于是，我的世界里有了一个独特的你，你的世界里多了一个平凡的我。</p>
+        <p>我们都不是没有原则的人。但一辈子那么长，总会遇到某些人、某些事，打破了自己毕生坚持的原则。总要过几年出乎意料的日子、有几度疲劳揪心的挣扎，才算真正递交了“阅历”的答卷。一生真正深刻的，其实也不过就是那几年。经历到最后会明白，把时间浪费在难忘的时间里，一点也不后悔。 </p>
+        <p> 爱到浪漫，是刚开始。爱到痛苦，是要分手。爱到平淡，就该结婚。感情发展到不同时期，就要做不同事。没有一辈子的浪漫和甜蜜，真正能长伴你身边的，只是慢慢老去的熟悉。情浓时说的一切都不可信，情淡时的每一天才是真。 </p>
+        <p>只要我们真正相爱，哪怕只有一天，一个小时，我们就不应该再有一刀两断的日子。也许你会在将来不爱我，也许你要离开我，但是我永远对你负有责任，就是你的一切苦难就永远是我的。我觉得我爱了你了，从此以后，不管什么时候，我都不能对你无动于衷。</p>',null,0,0);
+
+
+insert into comment(`mUser`,`Email` ,`mContent`, `mDate`,`mBid`) values('guest','123456@qq.com','我来看看',null,1);
+
+
+
+
+insert into liuyan(`lUser`,`lEmail` ,`lContent`, `lDate`) values('liuyan','123liuyan6@qq.com','留言给博主',null);
+
+
+
+insert into mood(`mopicsrc`,`moContent`,`moDate`) values('images/001.png','今天心情还不错',null);
+
+
+
+insert into blog(`bUid`,`bAuthor`,`bCateid`,`bCatename`,`bIstj`,`bTitle`,`bContent`,`bDate`,`bClicks`,`bComments`) values(1,'root',1,'jsp',true,'hello jspworld222','hello assssssssssssssssssss2222222222s',null,0,0);
+
+
+

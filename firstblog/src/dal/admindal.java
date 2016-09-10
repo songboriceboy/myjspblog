@@ -2,6 +2,8 @@ package dal;
 
 import java.sql.*;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import model.admin;
 import model.blog;
 import utils.dbconstant;
@@ -79,7 +81,8 @@ public ResultSet adminlogin(admin adm){
 		
 
           String sql="select * from  admin where uAccount='"+adm.getAccount()+"'and uPassword='"+adm.getPassword()+"'";        
-
+          //sql = StringEscapeUtils.escapeSql(sql);  //·Àsql×¢Èë
+          
           ResultSet rs=stmt.executeQuery(sql); //Ö´ÐÐ²éÑ¯ 
           return rs;
 	    }catch(Exception ex)

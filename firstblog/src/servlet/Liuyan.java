@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import  java.util.regex.Matcher;
 import  java.util.regex.Pattern;
 
@@ -22,10 +23,13 @@ import java.io.IOException;
 
 
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.StringEscapeUtils;
 
 public class Liuyan extends HttpServlet {
 	
@@ -67,6 +71,7 @@ if(code.equals(authcode))
 if(req.getParameter("name")!=""&&req.getParameter("name").length()<50)
 { 
 Name=new String(req.getParameter("name").getBytes("ISO-8859-1"),"UTF-8");
+Name=StringEscapeUtils.escapeHtml(Name);
 }else{
 	ms+="--姓名不正确";       
   }
@@ -82,6 +87,7 @@ if(req.getParameter("email")!=""&&req.getParameter("email").length()<50&&flag)
 {
 
 	Email=new String(req.getParameter("email").getBytes("ISO-8859-1"),"UTF-8");
+	Email=StringEscapeUtils.escapeHtml(Email);
 }else{
 	ms+="--邮箱不正确";     
   }
@@ -100,6 +106,7 @@ ms+="--内容不正确";
 if(req.getParameter("picsrc")!=""&&req.getParameter("picsrc").length()<500)
 {
      Picsrc=new String(req.getParameter("picsrc").getBytes("ISO-8859-1"),"UTF-8");
+     Picsrc=StringEscapeUtils.escapeHtml(Picsrc);
 }
 else{
 ms+="--图片地址不正确";        

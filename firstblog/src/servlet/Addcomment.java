@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import dal.blogdal;
 import dal.commentdal;
 import dal.notificationdal;
@@ -58,6 +60,7 @@ if(session.getAttribute("code").equals(authcode))
   if(request.getParameter("name")!=""&&request.getParameter("name").length()<50)
     { 
     Name=new String(request.getParameter("name").getBytes("ISO-8859-1"),"UTF-8");
+    Name=StringEscapeUtils.escapeHtml(Name);
     }else{
     	ms+="--用户名不正确";   
     }
@@ -73,6 +76,7 @@ if(session.getAttribute("code").equals(authcode))
       {
 
            Email = new String(request.getParameter("email").getBytes("ISO-8859-1"),"UTF-8"); 
+           Email=StringEscapeUtils.escapeHtml(Email);
       }else{
     	  ms+="--邮箱不正确";       
         }

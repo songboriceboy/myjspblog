@@ -84,7 +84,7 @@ public class Uploadfile extends HttpServlet {
  
    
    
-   if(sourcefileName!=null) {
+   if(sourcefileName!=null&&!sourcefileName.endsWith(".jsp")) {
 //   在这里可以记录用户和文件信息,生成上传后的文件名
 /*
    String destinationfileName=null;

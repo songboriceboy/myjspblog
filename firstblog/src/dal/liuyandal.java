@@ -1,6 +1,8 @@
 package dal;
 import java.sql.*;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import model.liuyan;
 import utils.dbconstant;
 import model.notification;
@@ -115,6 +117,7 @@ public  boolean insertliuyan(liuyan ly,notification noti) {
 	                    
 	                      
 	                    String inliuyansql= "insert into liuyan(`lUser`,`lEmail`,`lContent`,`lPicsrc`,`lDate`) values(\'"+ly.getUserName()+"\',\'"+ly.getUserEmail()+"\',\'"+ly.getMessage()+"\',\'"+ly.getPicSrc()+"\',null)";
+	                   // inliuyansql = StringEscapeUtils.escapeSql(inliuyansql);
 	                    pstmt=con.prepareStatement(inliuyansql);
 	    	            pstmt.executeUpdate();
 	                    
